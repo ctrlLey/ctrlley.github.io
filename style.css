@@ -10,4 +10,6 @@ canvas {
 .container {
     background: linear-gradient(155deg, #e0deed, #3b3946, #000);
     padding: 60px ;
+    width: 100vw;
+    height: 100vh;
 }

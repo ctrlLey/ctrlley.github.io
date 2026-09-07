@@ -3,10 +3,12 @@ body {
   margin: 0;
   padding: 0;
 }
+
 canvas {
   display: flex;
   margin: 0 auto;
 }
+
 .container {
   background: linear-gradient(155deg, #e0deed, #3b3946, #000);
   display: flex;

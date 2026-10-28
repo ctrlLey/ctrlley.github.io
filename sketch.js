@@ -89,7 +89,8 @@ class SimpleTable {
 async function setup() {
   let canvas = createCanvas(1000, 600);
   canvas.parent("game-container");
-
+  let scannerCanvasEl = document.getElementById("scanner-canvas");
+  let mCtx = scannerCanvasEl ? scannerCanvasEl.getContext("2d") : null;
   docbgImg = await loadImage("assets/doctors office.jpg");
 
   try {

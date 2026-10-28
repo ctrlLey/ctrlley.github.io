@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@2.3.4/lib/p5.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5.sound@0.4.1/dist/p5.sound.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Madimi+One&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <div id="game-container">
+      <div id="character-selector" style="display: none;">
+        <div id="clipboard-content">
+          <img id="clipboard-img" src="assets/clipboard.png" alt="" />
+          
+          <div class="demo-selector">
+            <label>Sex:</label>
+            <select id="sel-sex" onchange="updatePatientSprite()">
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+            </select>
+          </div>
+
+          <div class="demo-selector">
+            <label>Race/Ethnicity:</label>
+            <select id="sel-race-ethnicity" onchange="updatePatientSprite()">
+              <option value="White Non-Hispanic">White Non-Hispanic</option>
+              <option value="Black Non-Hispanic">Black Non-Hispanic</option>
+              <option value="Hispanic">Hispanic</option>
+              <option value="Asian + Pacific Islander">
+                Asian + Pacific Islander
+              </option>
+              <option value="Other Race/Ethnicity">Other Race/Ethnicity</option>
+              <option value="Not Stated/Unknown">Not Stated/Unknown</option>
+            </select>
+          </div>
+          <button id="random-btn" onclick="randomizePatient()">
+            Randomize
+          </button>
+          <button id="done-btn" onclick="closeClipboard()">Done</button>
+        </div>
+      </div>
+      <img
+        id="patient-sprite"
+        src="assets/wnhm.png"
+        crossorigin="anonymous"
+        alt=""
+      />
+      <div id="dialogue-ui" onclick="advanceDialogue()">
+        <div id="dr-sprite-box">
+          <img src="assets/dr.png" alt="" id="dr-sprite-img" />
+        </div>
+        <div id="dialogue-box">
+          <p id="dialogue-text"></p>
+        </div>
+      </div>
+      <div id="scanner-box" style="display: none;">
+
+        <div id="scanner-content">Place scanner over patient to view data.</div>
+        <canvas id="scanner-canvas" width="240" height="300" ></canvas>
+        <div id="scanner-controls">
+          <button onclick="zoomScanner(-0.2)">-</button>
+          <button onclick="zoomScanner(0.2)">+</button>
+          <button id="print-btn" onclick="printSilhouetteToClipboard()">Print to Clipboard</button>
+        </div>
+        
+      </div>
+      <div id="printed-clipboard-modal" style="display: none;">
+        <div id="printed-clipboard-content">
+          <img id="printed-clipboard-bg" src="assets/clipboard.png" alt="Clipboard" />
+          
+
+          <img id="printed-stamp" src="l" alt="Silhouette Stamp" />
+          
+
+          <canvas id="printed-canvas" width="200" height="250"></canvas>
+
+          <div id="printed-demographics">
+            <p><b>Patient Record</b></p>
+            <p id="print-sex-text">Sex: </p>
+            <p id="print-race-text">Race: </p>
+            <div id="print-hover-cause" style="margin-top: 10px; font-size: 13px; min-height: 40px; color: #333;">
+              <i>Hover to inspect causes.</i>
+            </div>
+          </div>
+
+
+          <button id="close-print-modal-btn" onclick="closePrintedClipboard()">Back to Office</button>
+        </div>
+      </div>
+    </div>
+    <script src="sketch.js"></script>
+  </body>
+</html>

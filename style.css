@@ -1,0 +1,332 @@
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  font-family: sans-serif;
+}
+canvas {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+#game-container {
+  position: relative;
+  width: 1000px;
+  height: 600px;
+  background: gray;
+  overflow: hidden; 
+  user-select: none;
+  margin: 0 auto;
+}
+
+#dialogue-ui {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  height: 150px;
+  z-index: 10;
+  display: flex;
+  pointer-events: none;
+  font-family: 'Madimi One', sans-serif;
+  background: rgba(108,108,108, 0.8);
+  border: 2px solid #6c6c6c;
+  padding: 10px 20px;
+  border-radius: 5px;
+  align-items: center;
+}
+
+#dr-sprite-box {
+  width: 130px;
+  height: 90%;
+  background: rgba(239, 239, 239, 1);
+  border: 2px solid rgba(100, 100, 100, 0.8);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: auto;
+  user-select: none;
+}
+
+#dr-sprite-img {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+}
+
+#patient-sprite {
+  position: absolute;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 55%;
+  object-fit: contain; 
+  z-index: 5; 
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.8s ease-in;
+}
+
+#dialogue-box {
+  flex-grow: 1;
+  height: 100%;
+  position: relative;
+  padding: 30px 25px 20px 25px;
+  box-sizing: border-box;
+  pointer-events: auto;
+  cursor: pointer;
+}
+#dialogue-text {
+  color: #ffffff;
+  font-size: 18px;
+  line-height: 1.4;
+  margin: 0;
+  user-select: none;
+  width: 80%;
+}
+
+#character-selector {
+  position: absolute;
+  width: 85%;
+  font-family: 'Madimi One', sans-serif;
+  z-index: 40;
+  left: 80%;
+  top: 50%;
+  transform: translate(-50%,-40%);
+}
+#clipboard-img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  z-index: 1;
+  user-select: none;
+}
+
+#character-selector .demo-selector {
+  position: absolute;
+  left: 38%;
+  width: 50%;
+  z-index: 10;
+}
+
+#character-selector .demo-selector:nth-of-type(1) {
+  top: 30%; 
+}
+
+#character-selector .demo-selector:nth-of-type(2) {
+  top: 40%;
+}
+
+.demo-selector select {
+  font-family: 'Madimi One', sans-serif;
+  background: white;
+  border-radius: 3px;
+  padding: 3px;
+  border: none;
+}
+
+#done-btn, #random-btn {
+  position: absolute;
+  bottom: 45%; 
+  left: 52%;
+  transform: translateX(-50%);
+  z-index: 50;
+  padding: 6px 24px;
+  border-radius: 5px;
+  border: none;
+  background: white;
+  font-family: 'Madimi One', sans-serif;
+  cursor: pointer;
+}
+
+#random-btn {
+  bottom: 50%; 
+  background: lightgray;
+}
+
+#scanner-box {
+  position: absolute;
+  width: 260px;
+  height: 360px;
+  border: 3px solid purple;
+  background: rgba(0, 0, 0, 0.95);
+  border-radius: 8px;
+  cursor: grab;
+  z-index: 20;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: 'Madimi One', sans-serif;
+  color: white;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+#print-btn {
+  background: purple;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 6px;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: 'Madimi One', sans-serif;
+  width: 55%;
+  flex-shrink: 0;
+  z-index: 5;
+  margin-top: 4px;
+}
+
+
+#scanner-content {
+  font-size: 12px;
+  line-height: 1;
+  height: 65px; 
+  padding: 6px;
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(20, 20, 20, 0.98);
+  border: 2px solid transparent;
+  border-radius: 4px;
+  flex-shrink: 0;
+  z-index: 5;
+  position: relative;
+}
+
+#scanner-canvas {
+  width: 250px;
+  height: 300px;
+  display: block;
+  background: rgba(0,0,0,0.6);
+  border-radius: 4px;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+#scanner-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  height: 25px;
+  flex-shrink: 0;
+  z-index: 5;
+}
+
+#scanner-controls button {
+  background: rgba(40,40,40,0.9);
+  color: white;
+  border: 2px solid purple;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: 'Madimi One', sans-serif;
+}
+
+
+#printed-clipboard-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Madimi One', sans-serif;
+  user-select: none;
+}
+
+#printed-clipboard-content {
+  position: relative;
+  width: 100%;
+  transform:translate(-5%,5%);
+}
+
+#printed-clipboard-bg {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.5));
+}
+
+#printed-stamp {
+  position: absolute;
+  top: 32%;
+  left: 42%;
+  width: 200px;
+  height: auto;
+  pointer-events: none;
+}
+
+#printed-demographics {
+  position: absolute;
+  top: 18%;
+  left: 30%;
+  width: 46%;
+  color: #222222;
+  font-size: 20px;
+  line-height: 0.5;
+  text-align:center;
+}
+
+#close-print-modal-btn {
+  position: absolute;
+  bottom:30%;
+  left: 53%;
+  transform: translateX(-50%);
+  background: #222;
+  color: white;
+  border: 2px solid purple;
+  border-radius: 5px;
+  padding: 8px 24px;
+  font-size: 14px;
+  font-family: 'Madimi One', sans-serif;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 100;
+}
+
+#close-print-modal-btn:hover {
+  background: #444;
+}
+
+#printed-canvas {
+  position: absolute;
+  top: 32%;
+  left: 42%;
+  width: 200px;
+  height: auto;
+  cursor: pointer;
+  z-index: 10;
+}
+
+#print-hover-cause {
+  padding: 6px;
+}
